@@ -2,6 +2,8 @@ import { LOAD_DECKS, CREATE_DECK, CREATE_QUESTION } from "../actions/index";
 import Reactotron from "reactotron-react-native";
 
 function decks(state = {}, action) {
+  Reactotron.log("passou");
+  Reactotron.log(action.type);
   switch (action.type) {
     case LOAD_DECKS:
       return {
@@ -11,10 +13,7 @@ function decks(state = {}, action) {
     case CREATE_DECK:
       return {
         ...state,
-        decks: {
-          ...state.decks,
-          ...action.deck
-        }
+        ...action.deck
       };
     case CREATE_QUESTION:
       console.log("action: ", action);

@@ -17,16 +17,13 @@ class DecksPage extends Component {
   };
 
   componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(handleLoadDecks());
+    Reactotron.log(this.props);
   }
 
   render() {
     return (
       <View>
-        <Button title="button" onPress={this.handlePress}>
-          vai toma
-        </Button>
+        <Button title="button" onPress={this.handlePress} />
       </View>
     );
   }

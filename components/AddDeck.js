@@ -25,7 +25,7 @@ class AddDeck extends Component {
     const { title } = this.state;
     Reactotron.log(this.props);
     return (
-      <View>
+      <View style={styles.container}>
         <TextInput
           placeholder="Deck Title"
           style={styles.textInput}

@@ -12,7 +12,9 @@ class AddDeck extends Component {
   };
 
   componentDidMount() {
-    const { dispatch } = this.props;
+    const { dispatch, decks } = this.props;
+    Reactotron.log("props of AddDeck: ", decks);
+
     dispatch(handleLoadDecks());
   }
 

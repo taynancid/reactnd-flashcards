@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { View, Text, Button } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  TouchableOpacity
+} from "react-native";
 import { connect } from "react-redux";
 import {
   handleLoadDecks,
@@ -9,28 +15,72 @@ import {
 import Reactotron from "reactotron-react-native";
 
 class DecksPage extends Component {
-  handlePress = e => {
-    const { dispatch } = this.props;
-    dispatch(
-      handleCreateQuestion("Homemaranha", "Qual a cor do uniforme", "preto")
-    );
+  state = {
+    decksArr: []
   };
 
   componentDidMount() {
-    Reactotron.log(this.props);
+    const { decks } = this.props;
+    const arr = Object.values(decks);
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        decksArr: arr
+      };
+    });
   }
+
+  selectDeck = title => {
+    Reactotron.log(title);
+  };
 
   render() {
     return (
-      <View>
-        <Button title="button" onPress={this.handlePress} />
+      <View style={styles.container}>
+        <FlatList
+          data={this.state.decksArr}
+          showsVerticalScrollIndicator={false}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={styles.flatview}
+              onPress={() => this.selectDeck(item.title)}
+            >
+              <Text style={styles.name}>{item.title}</Text>
+              <Text styles={styles.cards}>{`${
+                item.questions.length
+              } cards`}</Text>
+            </TouchableOpacity>
+          )}
+        />
       </View>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return state;
+  return {
+    decks: state
+  };
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F5FCFF"
+  },
+  flatview: {
+    justifyContent: "center",
+    paddingTop: 30,
+    borderRadius: 2
+  },
+  name: {
+    fontSize: 18
+  },
+  cards: {
+    color: "red"
+  }
+});
 
 export default connect(mapStateToProps)(DecksPage);

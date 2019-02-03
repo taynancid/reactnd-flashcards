@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
+import { connect } from "react-redux";
+import { handleLoadDecks } from "../actions";
 
 class HomeScreen extends Component {
-  goAddDeck = e => {
-    console.log("oi");
-  };
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(handleLoadDecks());
+  }
 
   render() {
     return (
@@ -30,4 +33,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default HomeScreen;
+export default connect()(HomeScreen);

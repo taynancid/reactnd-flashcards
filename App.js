@@ -8,6 +8,7 @@ import reducer from "./reducers";
 import HomeScreen from "./components/HomeScreen";
 import DecksPage from "./components/DecksPage";
 import AddDeck from "./components/AddDeck";
+import DeckView from "./components/DeckView";
 if (__DEV__) {
   import("./ReactotronConfig").then(() => console.log("Reactotron Configured"));
 }
@@ -17,7 +18,8 @@ const AppNavigator = createStackNavigator(
   {
     Home: { screen: HomeScreen },
     AddDeck: { screen: AddDeck },
-    DecksPage: { screen: DecksPage }
+    DecksPage: { screen: DecksPage },
+    DeckView: { screen: DeckView }
   },
   {
     initialRouteName: "Home"

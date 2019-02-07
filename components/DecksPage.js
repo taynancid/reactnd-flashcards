@@ -31,7 +31,8 @@ class DecksPage extends Component {
   }
 
   selectDeck = title => {
-    Reactotron.log(title);
+    Reactotron.log("title selected: ", title);
+    this.props.navigation.navigate("DeckView", { title });
   };
 
   render() {
@@ -42,6 +43,7 @@ class DecksPage extends Component {
           showsVerticalScrollIndicator={false}
           renderItem={({ item }) => (
             <TouchableOpacity
+              key={item.title}
               style={styles.flatview}
               onPress={() => this.selectDeck(item.title)}
             >

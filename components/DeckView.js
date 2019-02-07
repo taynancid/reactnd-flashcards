@@ -12,7 +12,7 @@ import Reactotron from "reactotron-react-native";
 
 class DeckView extends Component {
   addCard = title => {
-    Reactotron.log(title);
+    this.props.navigation.navigate("CreateQuestionView", { title });
   };
 
   render() {

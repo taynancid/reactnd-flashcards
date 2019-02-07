@@ -31,7 +31,6 @@ class DecksPage extends Component {
   }
 
   selectDeck = title => {
-    Reactotron.log("title selected: ", title);
     this.props.navigation.navigate("DeckView", { title });
   };
 

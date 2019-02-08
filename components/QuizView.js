@@ -5,6 +5,7 @@ import Reactotron from "reactotron-react-native";
 
 class QuizView extends Component {
   state = {
+    score: 0,
     currQuestion: 0,
     questions: [],
     result: false
@@ -20,9 +21,14 @@ class QuizView extends Component {
   }
 
   render() {
+    const { currQuestion } = this.state;
+    const { questions } = this.props.navigation.state.params;
     return (
       <View>
-        <Text>quiz</Text>
+        <Text>{questions[currQuestion].question}</Text>
+        <Text>{questions[currQuestion].answer}</Text>
+        <Button title="correct" />
+        <Button title="wrong" />
       </View>
     );
   }

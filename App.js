@@ -10,6 +10,7 @@ import DecksPage from "./components/DecksPage";
 import AddDeck from "./components/AddDeck";
 import DeckView from "./components/DeckView";
 import CreateQuestionView from "./components/CreateQuestionView";
+import QuizView from "./components/QuizView";
 if (__DEV__) {
   import("./ReactotronConfig").then(() => console.log("Reactotron Configured"));
 }
@@ -21,7 +22,8 @@ const AppNavigator = createStackNavigator(
     AddDeck: { screen: AddDeck },
     DecksPage: { screen: DecksPage },
     DeckView: { screen: DeckView },
-    CreateQuestionView: { screen: CreateQuestionView }
+    CreateQuestionView: { screen: CreateQuestionView },
+    QuizView: { screen: QuizView }
   },
   {
     initialRouteName: "Home"

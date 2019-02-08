@@ -15,11 +15,16 @@ class DeckView extends Component {
     this.props.navigation.navigate("CreateQuestionView", { title });
   };
 
+  startQuiz = questions => {
+    Reactotron.log("quizview");
+    this.props.navigation.navigate("QuizView", { questions });
+  };
+
   render() {
-    const { title, cardsCount } = this.props;
+    const { title, cardsCount, questions } = this.props;
     return (
       <View>
-        <Button onPress={this.startQuiz} title="start quiz" />
+        <Button onPress={() => this.startQuiz(questions)} title="start quiz" />
         <Button onPress={() => this.addCard(title)} title="add a card" />
         <Text>{title}</Text>
         <Text>{cardsCount}</Text>
@@ -36,6 +41,7 @@ function mapStateToProps(state, props) {
 
   return {
     title: title,
+    questions: deck.questions,
     cardsCount: deck.questions.length
   };
 }

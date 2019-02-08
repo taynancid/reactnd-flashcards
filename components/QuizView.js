@@ -7,28 +7,35 @@ class QuizView extends Component {
   state = {
     score: 0,
     currQuestion: 0,
-    questions: [],
     result: false
   };
 
-  componentDidMount() {
+  handlePress = e => {
     this.setState(prevState => {
       return {
         ...prevState,
-        questions: this.props.navigation.state.params.questions
+        currQuestion: prevState.currQuestion + 1
       };
     });
-  }
+  };
 
   render() {
     const { currQuestion } = this.state;
     const { questions } = this.props.navigation.state.params;
     return (
       <View>
-        <Text>{questions[currQuestion].question}</Text>
-        <Text>{questions[currQuestion].answer}</Text>
-        <Button title="correct" />
-        <Button title="wrong" />
+        {currQuestion !== questions.length ? (
+          <View>
+            <Text>{questions[currQuestion].question}</Text>
+            <Text>{questions[currQuestion].answer}</Text>
+            <Button onPress={this.handlePress} title="correct" />
+            <Button onPress={this.handlePress} title="wrong" />
+          </View>
+        ) : (
+          <View>
+            <Text>result</Text>
+          </View>
+        )}
       </View>
     );
   }

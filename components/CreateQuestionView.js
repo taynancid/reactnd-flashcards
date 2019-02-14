@@ -5,6 +5,10 @@ import { handleCreateQuestion } from "../actions";
 import Reactotron from "reactotron-react-native";
 
 class CreateQuestionView extends Component {
+  static navigationOptions = {
+    title: "New Card"
+  };
+
   state = {
     question: "",
     answer: ""

@@ -4,6 +4,10 @@ import { connect } from "react-redux";
 import { handleLoadDecks } from "../actions";
 
 class HomeScreen extends Component {
+  static navigationOptions = {
+    header: null
+  };
+
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(handleLoadDecks());

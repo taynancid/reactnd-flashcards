@@ -11,6 +11,12 @@ import { connect } from "react-redux";
 import Reactotron from "reactotron-react-native";
 
 class DeckView extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: navigation.getParam("title")
+    };
+  };
+
   addCard = title => {
     this.props.navigation.navigate("CreateQuestionView", { title });
   };

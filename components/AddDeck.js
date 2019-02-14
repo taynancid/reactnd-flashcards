@@ -7,6 +7,10 @@ import { connect } from "react-redux";
 //TODO : Style, remove componentDidMount if turns out to be not a container Component
 
 class AddDeck extends Component {
+  static navigationOptions = {
+    title: "New Deck"
+  };
+
   state = {
     title: ""
   };

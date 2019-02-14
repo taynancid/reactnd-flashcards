@@ -15,6 +15,10 @@ import {
 import Reactotron from "reactotron-react-native";
 
 class DecksPage extends Component {
+  static navigationOptions = {
+    title: "Decks"
+  };
+
   state = {
     decksArr: []
   };

@@ -4,6 +4,10 @@ import { connect } from "react-redux";
 import Reactotron from "reactotron-react-native";
 
 class QuizView extends Component {
+  static navigationOptions = {
+    title: "Quiz"
+  };
+
   state = {
     score: 0,
     currQuestion: 0,

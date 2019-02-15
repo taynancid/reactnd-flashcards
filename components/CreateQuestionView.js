@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { View, Text, Button, TextInput } from "react-native";
+import { View, Text, Button, TextInput, StyleSheet } from "react-native";
 import { connect } from "react-redux";
 import { handleCreateQuestion } from "../actions";
-import Reactotron from "reactotron-react-native";
 
 class CreateQuestionView extends Component {
   static navigationOptions = {
@@ -33,25 +32,53 @@ class CreateQuestionView extends Component {
   render() {
     const { deck } = this.props;
     return (
-      <View>
-        <Text>{deck}</Text>
-        <Text>Question</Text>
-        <TextInput
-          style={{ height: 40, borderColor: "red", borderWidth: 3 }}
-          onChangeText={text => this.changeText({ target: "question", text })}
-          value={this.state.question}
-        />
-        <Text>Answer</Text>
-        <TextInput
-          style={{ height: 40, borderColor: "red", borderWidth: 3 }}
-          onChangeText={text => this.changeText({ target: "answer", text })}
-          value={this.state.answer}
-        />
+      <View style={styles.container}>
+        <Text style={styles.deckName}>{deck}</Text>
+        <View>
+          <TextInput
+            placeholder="Question"
+            style={styles.textInput}
+            onChangeText={text => this.changeText({ target: "question", text })}
+            value={this.state.question}
+          />
+          <TextInput
+            placeholder="Answer"
+            style={styles.textInput}
+            onChangeText={text => this.changeText({ target: "answer", text })}
+            value={this.state.answer}
+          />
+        </View>
         <Button onPress={this.handleAdd} title="add" />
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  textInput: {
+    height: 40,
+    paddingLeft: 6,
+    fontSize: 27,
+    margin: 20
+  },
+  container: {
+    flex: 1,
+    justifyContent: "space-around",
+    marginTop: 50,
+    padding: 20,
+    backgroundColor: "#ffffff"
+  },
+  textButton: {
+    fontSize: 20,
+    textAlign: "center",
+    color: "#006400"
+  },
+  deckName: {
+    justifyContent: "flex-end",
+    fontSize: 30,
+    textAlign: "center"
+  }
+});
 
 function mapStateToProps(state, props) {
   return {

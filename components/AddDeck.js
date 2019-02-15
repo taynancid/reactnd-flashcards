@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { View, Text, Button, StyleSheet, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  TextInput
+} from "react-native";
 import Reactotron from "reactotron-react-native";
 import { handleLoadDecks, handleCreateDeck } from "../actions";
 import { connect } from "react-redux";
@@ -16,20 +22,19 @@ class AddDeck extends Component {
   };
 
   componentDidMount() {
-    const { dispatch, decks } = this.props;
-    Reactotron.log("props of AddDeck: ", decks);
-
+    const { dispatch } = this.props;
     dispatch(handleLoadDecks());
   }
 
   handleSubmit = e => {
-    const { dispatch } = this.props;
+    const { dispatch, navigation } = this.props;
     dispatch(handleCreateDeck(this.state.title));
+    navigation.goBack();
   };
 
   render() {
     const { title } = this.state;
-    Reactotron.log(this.props);
+
     return (
       <View style={styles.container}>
         <TextInput
@@ -37,11 +42,12 @@ class AddDeck extends Component {
           style={styles.textInput}
           onChangeText={text => this.setState({ title: text })}
         />
-        <Button
-          title="Add Deck"
+        <TouchableOpacity
           disabled={title === "" ? true : false}
           onPress={this.handleSubmit}
-        />
+        >
+          <Text style={styles.textButton}>Add Deck</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -50,13 +56,20 @@ class AddDeck extends Component {
 const styles = StyleSheet.create({
   textInput: {
     height: 40,
-    paddingLeft: 6
+    paddingLeft: 6,
+    fontSize: 27
   },
   container: {
-    justifyContent: "center",
+    flex: 1,
+    justifyContent: "space-around",
     marginTop: 50,
     padding: 20,
     backgroundColor: "#ffffff"
+  },
+  textButton: {
+    fontSize: 20,
+    textAlign: "center",
+    color: "#006400"
   }
 });
 

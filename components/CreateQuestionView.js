@@ -1,7 +1,14 @@
 import React, { Component } from "react";
-import { View, Text, Button, TextInput, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  StyleSheet
+} from "react-native";
 import { connect } from "react-redux";
 import { handleCreateQuestion } from "../actions";
+import { globalStyles } from "../utils/globalStyles";
 
 class CreateQuestionView extends Component {
   static navigationOptions = {
@@ -23,14 +30,16 @@ class CreateQuestionView extends Component {
   };
 
   handleAdd = e => {
-    const { dispatch, deck } = this.props;
+    const { dispatch, deck, navigation } = this.props;
     dispatch(
       handleCreateQuestion(deck, this.state.question, this.state.answer)
     );
+    navigation.goBack();
   };
 
   render() {
     const { deck } = this.props;
+    const { question, answer } = this.state;
     return (
       <View style={styles.container}>
         <Text style={styles.deckName}>{deck}</Text>
@@ -48,7 +57,12 @@ class CreateQuestionView extends Component {
             value={this.state.answer}
           />
         </View>
-        <Button onPress={this.handleAdd} title="add" />
+        <TouchableOpacity
+          onPress={this.handleAdd}
+          disabled={question === "" && answer === ""}
+        >
+          <Text style={globalStyles.button}>Add</Text>
+        </TouchableOpacity>
       </View>
     );
   }

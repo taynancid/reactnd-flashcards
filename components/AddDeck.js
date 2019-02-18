@@ -9,6 +9,7 @@ import {
 import Reactotron from "reactotron-react-native";
 import { handleLoadDecks, handleCreateDeck } from "../actions";
 import { connect } from "react-redux";
+import { globalStyles } from "../utils/globalStyles";
 
 //TODO : Style, remove componentDidMount if turns out to be not a container Component
 
@@ -46,7 +47,7 @@ class AddDeck extends Component {
           disabled={title === "" ? true : false}
           onPress={this.handleSubmit}
         >
-          <Text style={styles.button}>Add Deck</Text>
+          <Text style={globalStyles.button}>Add Deck</Text>
         </TouchableOpacity>
       </View>
     );
@@ -65,19 +66,6 @@ const styles = StyleSheet.create({
     marginTop: 50,
     padding: 20,
     backgroundColor: "#ffffff"
-  },
-  button: {
-    backgroundColor: "#006400",
-    borderColor: "white",
-    borderWidth: 1,
-    borderRadius: 12,
-    color: "white",
-    fontSize: 24,
-    fontWeight: "bold",
-    overflow: "hidden",
-    padding: 12,
-    textAlign: "center",
-    margin: 7
   }
 });
 

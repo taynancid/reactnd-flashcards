@@ -5,8 +5,10 @@ import {
   Button,
   FlatList,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  Dimensions
 } from "react-native";
+import { globalStyles } from "../utils/globalStyles";
 import { connect } from "react-redux";
 import Reactotron from "reactotron-react-native";
 
@@ -29,15 +31,33 @@ class DeckView extends Component {
   render() {
     const { title, cardsCount, questions } = this.props;
     return (
-      <View>
-        <Button onPress={() => this.startQuiz(questions)} title="start quiz" />
-        <Button onPress={() => this.addCard(title)} title="add a card" />
-        <Text>{title}</Text>
-        <Text>{cardsCount}</Text>
+      <View style={styles.container}>
+        <View style={styles.btnContainer}>
+          <TouchableOpacity onPress={() => this.startQuiz(questions)}>
+            <Text style={globalStyles.button}>Start Quiz</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => this.addCard(title)}>
+            <Text style={globalStyles.button}>Add Card</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center"
+  },
+  btnContainer: {
+    margin: 10
+  },
+  title: {
+    fontSize: 40,
+    color: "#006400"
+  }
+});
 
 function mapStateToProps(state, props) {
   const title = props.navigation.state.params.title;

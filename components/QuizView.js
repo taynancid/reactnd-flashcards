@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, Button } from "react-native";
+import { View, Text, Button, StyleSheet } from "react-native";
 import { connect } from "react-redux";
 import Reactotron from "reactotron-react-native";
 
@@ -27,9 +27,9 @@ class QuizView extends Component {
     const { currQuestion } = this.state;
     const { questions } = this.props.navigation.state.params;
     return (
-      <View>
+      <View style={styles.container}>
         {currQuestion !== questions.length ? (
-          <View>
+          <View style={styles.card}>
             <Text>{questions[currQuestion].question}</Text>
             <Text>{questions[currQuestion].answer}</Text>
             <Button onPress={this.handlePress} title="correct" />
@@ -44,5 +44,32 @@ class QuizView extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  btnContainer: {
+    margin: 10
+  },
+  questionContainer: {
+    flex: 1,
+
+    alignItems: "center"
+  },
+  title: {
+    fontSize: 25,
+    color: "#006400"
+  },
+  card: {
+    flex: 0.9,
+    width: 300,
+    backgroundColor: "#2E9298",
+    borderRadius: 10,
+    padding: 10
+  }
+});
 
 export default connect()(QuizView);

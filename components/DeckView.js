@@ -40,6 +40,16 @@ class DeckView extends Component {
             <Text style={globalStyles.button}>Add Card</Text>
           </TouchableOpacity>
         </View>
+        <View style={styles.questionContainer}>
+          <Text style={styles.title}>Questions</Text>
+          <FlatList
+            data={this.props.questions}
+            showsVerticalScrollIndicator={false}
+            renderItem={({ item }) => (
+              <Text style={styles.question}>{item.question}</Text>
+            )}
+          />
+        </View>
       </View>
     );
   }
@@ -53,9 +63,24 @@ const styles = StyleSheet.create({
   btnContainer: {
     margin: 10
   },
+  questionContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
   title: {
-    fontSize: 40,
+    fontSize: 25,
     color: "#006400"
+  },
+  question: {
+    backgroundColor: "#DDDDDD",
+    borderColor: "white",
+    fontSize: 15,
+    overflow: "hidden",
+    padding: 12,
+    textAlign: "center",
+    margin: 7,
+    width: 300
   }
 });
 

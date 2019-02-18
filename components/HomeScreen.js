@@ -21,12 +21,12 @@ class HomeScreen extends Component {
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("AddDeck")}
           >
-            <Text style={styles.textButtons}>Add a New Deck</Text>
+            <Text style={styles.button}>New Deck</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("DecksPage")}
           >
-            <Text style={styles.textButtons}>See Decks </Text>
+            <Text style={styles.button}>See Decks</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -44,10 +44,18 @@ const styles = StyleSheet.create({
     fontSize: 40,
     color: "#006400"
   },
-  textButtons: {
-    fontSize: 20,
-    margin: 10,
-    color: "#006400"
+  button: {
+    backgroundColor: "#006400",
+    borderColor: "white",
+    borderWidth: 1,
+    borderRadius: 12,
+    color: "white",
+    fontSize: 24,
+    fontWeight: "bold",
+    overflow: "hidden",
+    padding: 12,
+    textAlign: "center",
+    margin: 7
   }
 });
 

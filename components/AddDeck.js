@@ -46,7 +46,7 @@ class AddDeck extends Component {
           disabled={title === "" ? true : false}
           onPress={this.handleSubmit}
         >
-          <Text style={styles.textButton}>Add Deck</Text>
+          <Text style={styles.button}>Add Deck</Text>
         </TouchableOpacity>
       </View>
     );
@@ -66,10 +66,18 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: "#ffffff"
   },
-  textButton: {
-    fontSize: 20,
+  button: {
+    backgroundColor: "#006400",
+    borderColor: "white",
+    borderWidth: 1,
+    borderRadius: 12,
+    color: "white",
+    fontSize: 24,
+    fontWeight: "bold",
+    overflow: "hidden",
+    padding: 12,
     textAlign: "center",
-    color: "#006400"
+    margin: 7
   }
 });
 

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { View, Text, Button, StyleSheet, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import { Entypo } from "@expo/vector-icons";
@@ -16,10 +16,11 @@ class QuizView extends Component {
     result: false
   };
 
-  handlePress = e => {
+  handlePress = result => {
     this.setState(prevState => {
       return {
         ...prevState,
+        score: result ? prevState.score + 1 : prevState.score,
         showAnswer: false,
         currQuestion: prevState.currQuestion + 1
       };
@@ -27,7 +28,7 @@ class QuizView extends Component {
   };
 
   handleShowAnswer = e => {
-    Reactotron.log("show Answer");
+    Reactotron.log(e);
     this.setState(prevState => {
       return {
         ...prevState,
@@ -59,8 +60,16 @@ class QuizView extends Component {
               </TouchableOpacity>
             )}
             <View style={styles.btnContainer}>
-              <Button onPress={this.handlePress} title="correct" />
-              <Button onPress={this.handlePress} title="wrong" />
+              {showAnswer === true && (
+                <Fragment>
+                  <TouchableOpacity onPress={() => this.handlePress(true)}>
+                    <Text style={styles.correctBtn}>Correct</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => this.handlePress(false)}>
+                    <Text style={styles.wrongBtn}>Wrong</Text>
+                  </TouchableOpacity>
+                </Fragment>
+              )}
             </View>
           </View>
         ) : (
@@ -101,6 +110,34 @@ const styles = StyleSheet.create({
   btnContainer: {
     flexDirection: "row",
     justifyContent: "space-between"
+  },
+  correctBtn: {
+    backgroundColor: "green",
+    borderColor: "white",
+    borderWidth: 1,
+    borderRadius: 12,
+    color: "white",
+    fontSize: 13,
+    fontWeight: "bold",
+    overflow: "hidden",
+    padding: 7,
+    textAlign: "center",
+    margin: 3,
+    width: 100
+  },
+  wrongBtn: {
+    backgroundColor: "red",
+    borderColor: "white",
+    borderWidth: 1,
+    borderRadius: 12,
+    color: "white",
+    fontSize: 13,
+    fontWeight: "bold",
+    overflow: "hidden",
+    padding: 7,
+    textAlign: "center",
+    margin: 3,
+    width: 100
   }
 });
 

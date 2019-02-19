@@ -38,45 +38,48 @@ class QuizView extends Component {
   };
 
   render() {
-    const { currQuestion, showAnswer } = this.state;
+    const { currQuestion, showAnswer, score } = this.state;
     const { questions } = this.props.navigation.state.params;
     return (
       <View style={styles.container}>
-        {currQuestion !== questions.length ? (
-          <View style={styles.card}>
-            <Text style={styles.question}>
-              {questions[currQuestion].question}
-            </Text>
-            {showAnswer ? (
-              <Text style={styles.answer}>
-                {questions[currQuestion].answer}
+        <View style={styles.card}>
+          {currQuestion !== questions.length ? (
+            <Fragment>
+              <Text style={styles.header}>
+                {questions[currQuestion].question}
               </Text>
-            ) : (
-              <TouchableOpacity
-                style={styles.icon}
-                onPress={() => this.handleShowAnswer()}
-              >
-                <Entypo name="eye" size={50} />
-              </TouchableOpacity>
-            )}
-            <View style={styles.btnContainer}>
-              {showAnswer === true && (
-                <Fragment>
-                  <TouchableOpacity onPress={() => this.handlePress(true)}>
-                    <Text style={styles.correctBtn}>Correct</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity onPress={() => this.handlePress(false)}>
-                    <Text style={styles.wrongBtn}>Wrong</Text>
-                  </TouchableOpacity>
-                </Fragment>
+              {showAnswer ? (
+                <Text style={styles.body}>
+                  {questions[currQuestion].answer}
+                </Text>
+              ) : (
+                <TouchableOpacity
+                  style={styles.icon}
+                  onPress={() => this.handleShowAnswer()}
+                >
+                  <Entypo name="eye" size={50} />
+                </TouchableOpacity>
               )}
-            </View>
-          </View>
-        ) : (
-          <View>
-            <Text>result</Text>
-          </View>
-        )}
+              <View style={styles.btnContainer}>
+                {showAnswer === true && (
+                  <Fragment>
+                    <TouchableOpacity onPress={() => this.handlePress(true)}>
+                      <Text style={styles.correctBtn}>Correct</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.handlePress(false)}>
+                      <Text style={styles.wrongBtn}>Wrong</Text>
+                    </TouchableOpacity>
+                  </Fragment>
+                )}
+              </View>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <Text style={styles.header}>Result</Text>
+              <Text style={styles.body}>{`${score}/${currQuestion}`}</Text>
+            </Fragment>
+          )}
+        </View>
       </View>
     );
   }
@@ -88,11 +91,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   },
-  question: {
+  header: {
     textAlign: "center",
     fontSize: 30
   },
-  answer: {
+  body: {
     textAlign: "center",
     fontSize: 20
   },

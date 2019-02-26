@@ -76,9 +76,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#F5FCFF"
   },
   flatview: {
+    flex: 1,
     justifyContent: "center",
-    paddingTop: 30,
-    borderRadius: 2
+    alignItems: "center",
+    backgroundColor: "#6AAF6A",
+    overflow: "hidden",
+    padding: 12,
+    textAlign: "center",
+    margin: 7,
+    width: 300
   },
   name: {
     fontSize: 18

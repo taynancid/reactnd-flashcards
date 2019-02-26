@@ -1,7 +1,9 @@
-node_modules/**/*
-.expo/*
+node_modules/
+.expo/
+commit_msg
 npm-debug.*
 *.jks
 *.p12
 *.key
 *.mobileprovision
+

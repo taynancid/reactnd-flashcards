@@ -76,7 +76,12 @@ class QuizView extends Component {
           ) : (
             <Fragment>
               <Text style={styles.header}>Result</Text>
-              <Text style={styles.body}>{`${score}/${currQuestion}`}</Text>
+              <Text
+                style={styles.body}
+              >{`You scored ${score} out of ${currQuestion} questions!`}</Text>
+              <Text style={styles.body}>{`${Math.round(
+                (score / currQuestion) * 100
+              )}%`}</Text>
             </Fragment>
           )}
         </View>
@@ -97,7 +102,8 @@ const styles = StyleSheet.create({
   },
   body: {
     textAlign: "center",
-    fontSize: 20
+    fontSize: 20,
+    marginBottom: 100
   },
   icon: {
     alignItems: "center"

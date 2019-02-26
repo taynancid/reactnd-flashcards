@@ -59,9 +59,17 @@ class CreateQuestionView extends Component {
         </View>
         <TouchableOpacity
           onPress={this.handleAdd}
-          disabled={question === "" && answer === ""}
+          disabled={question === "" || answer === ""}
         >
-          <Text style={globalStyles.button}>Add</Text>
+          <Text
+            style={
+              question === "" || answer === ""
+                ? globalStyles.buttonDisabled
+                : globalStyles.button
+            }
+          >
+            Add
+          </Text>
         </TouchableOpacity>
       </View>
     );

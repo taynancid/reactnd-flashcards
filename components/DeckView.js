@@ -33,8 +33,19 @@ class DeckView extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.btnContainer}>
-          <TouchableOpacity onPress={() => this.startQuiz(questions)}>
-            <Text style={globalStyles.button}>Start Quiz</Text>
+          <TouchableOpacity
+            onPress={() => this.startQuiz(questions)}
+            disabled={cardsCount < 1}
+          >
+            <Text
+              style={
+                cardsCount < 1
+                  ? globalStyles.buttonDisabled
+                  : globalStyles.button
+              }
+            >
+              Start Quiz
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => this.addCard(title)}>
             <Text style={globalStyles.button}>Add Card</Text>

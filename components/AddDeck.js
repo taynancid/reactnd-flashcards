@@ -47,7 +47,13 @@ class AddDeck extends Component {
           disabled={title === "" ? true : false}
           onPress={this.handleSubmit}
         >
-          <Text style={globalStyles.button}>Add Deck</Text>
+          <Text
+            style={
+              title === "" ? globalStyles.buttonDisabled : globalStyles.button
+            }
+          >
+            Add Deck
+          </Text>
         </TouchableOpacity>
       </View>
     );

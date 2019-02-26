@@ -56,6 +56,7 @@ class DecksPage extends Component {
               } cards`}</Text>
             </TouchableOpacity>
           )}
+          keyExtractor={(item, index) => index.toString()}
         />
       </View>
     );

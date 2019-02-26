@@ -48,6 +48,7 @@ class DeckView extends Component {
             renderItem={({ item }) => (
               <Text style={styles.question}>{item.question}</Text>
             )}
+            keyExtractor={(item, index) => index.toString()}
           />
         </View>
       </View>

@@ -27,6 +27,16 @@ class QuizView extends Component {
     });
   };
 
+  handleReset = () => {
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        score: 0,
+        currQuestion: 0
+      };
+    });
+  };
+
   handleShowAnswer = e => {
     Reactotron.log(e);
     this.setState(prevState => {
@@ -82,6 +92,18 @@ class QuizView extends Component {
               <Text style={styles.body}>{`${Math.round(
                 (score / currQuestion) * 100
               )}%`}</Text>
+              <Fragment>
+                <View style={styles.btnContainer}>
+                  <TouchableOpacity onPress={() => this.handleReset()}>
+                    <Text style={styles.correctBtn}>Restart</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => this.props.navigation.goBack()}
+                  >
+                    <Text style={styles.correctBtn}>Back to Deck</Text>
+                  </TouchableOpacity>
+                </View>
+              </Fragment>
             </Fragment>
           )}
         </View>
@@ -104,6 +126,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 20,
     marginBottom: 100
+  },
+  footer: {
+    alignItems: "center"
   },
   icon: {
     alignItems: "center"

@@ -52,7 +52,9 @@ class DeckView extends Component {
           </TouchableOpacity>
         </View>
         <View style={styles.questionContainer}>
-          <Text style={styles.title}>Questions</Text>
+          <Text style={styles.title}>{`${
+            this.props.cardsCount
+          } Questions`}</Text>
           <FlatList
             data={this.props.questions}
             showsVerticalScrollIndicator={false}

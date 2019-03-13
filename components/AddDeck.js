@@ -48,6 +48,10 @@ class AddDeck extends Component {
     });
   };
 
+  handleChangeText = text => {
+    this.setState({ title: text });
+  };
+
   render() {
     const { title } = this.state;
 
@@ -56,7 +60,7 @@ class AddDeck extends Component {
         <TextInput
           placeholder="Deck Title"
           style={styles.textInput}
-          onChangeText={text => this.setState({ title: text })}
+          onChangeText={text => this.handleChangeText(text)}
         />
         <TouchableOpacity
           disabled={title === "" ? true : false}

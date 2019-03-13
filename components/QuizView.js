@@ -71,7 +71,7 @@ class QuizView extends Component {
                 </TouchableOpacity>
               )}
               <View style={styles.btnContainer}>
-                {showAnswer === true && (
+                {showAnswer && (
                   <Fragment>
                     <TouchableOpacity onPress={() => this.handlePress(true)}>
                       <Text style={styles.correctBtn}>Correct</Text>

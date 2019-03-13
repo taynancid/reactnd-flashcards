@@ -10,6 +10,7 @@ import Reactotron from "reactotron-react-native";
 import { handleLoadDecks, handleCreateDeck } from "../actions";
 import { connect } from "react-redux";
 import { globalStyles } from "../utils/globalStyles";
+import { StackActions, NavigationActions } from "react-navigation";
 
 //TODO : Style, remove componentDidMount if turns out to be not a container Component
 
@@ -29,8 +30,22 @@ class AddDeck extends Component {
 
   handleSubmit = e => {
     const { dispatch, navigation } = this.props;
-    dispatch(handleCreateDeck(this.state.title));
-    navigation.goBack();
+    dispatch(handleCreateDeck(this.state.title)).then(() => {
+      const resetAction = StackActions.reset({
+        index: 2,
+        actions: [
+          NavigationActions.navigate({ routeName: "Home" }),
+          NavigationActions.navigate({ routeName: "DecksPage" }),
+          NavigationActions.navigate({
+            routeName: "DeckView",
+            params: {
+              title: this.state.title
+            }
+          })
+        ]
+      });
+      this.props.navigation.dispatch(resetAction);
+    });
   };
 
   render() {
